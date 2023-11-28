@@ -4,6 +4,12 @@ Web Communications Assessment 3 - Web Prescence
 # Aim
 The aim of this part of Assessment 3 is to develop an initial online presence.
 
+# Nodes
+- Central Node: Blog
+- Node 1: Airtasker
+- Node 2: Github
+- Node 3: 
+
 # Requirements
 - Must have a Central Node (the core blog)
 - An "About" page, which briefly introduces you and a theme.
