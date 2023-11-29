@@ -1,5 +1,36 @@
-ul {
+nav {
+  background-color: var(--bg-pri);
+  color: var(--fg-pri);
+}
+
+nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+}
+
+nav ul li, nav ul li a {
+  min-width: 100px;
+  height: 3rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+/* Hover effects */
+nav ul li:hover {
+  transition: 0.25s;
+  color: #000000;
 }

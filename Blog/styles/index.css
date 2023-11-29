@@ -2,3 +2,9 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* Colourscheme */
+:root {
+  --fg-pri: #363636; /* jet, two shades off black */
+  --bg-pri: #fbfbfb; /* white, subtley grey */
+}
