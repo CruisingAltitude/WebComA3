@@ -1,8 +1,6 @@
 function Blog(){
   return (
-    <>
-      <p>blog body</p>
-    </>
+    <h1>Blog</h1>
   )
 }
 
