@@ -2,3 +2,7 @@
 ~$*
 appsettings.json
 appsettings.Development.json
+AdminPortal/bin
+AdminPortal/obj/Debug
+API/bin
+API/obj/Debug
