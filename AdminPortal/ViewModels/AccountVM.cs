@@ -1,13 +1,8 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AdminPortal.Models;
+namespace AdminPortal.ViewModels;
 
-public class Account{
-  [Key]
-  [Required]
-  public int AccountId { get; init; }
-
+public class AccountVM{
   [Required]
   [RegularExpression(@"^[\w]{5,32}$")]
   [StringLength(32, MinimumLength = 5, ErrorMessage = "Usernames must be between 4 and 33 characters")]
@@ -21,14 +16,4 @@ public class Account{
 
   [StringLength(10000, MinimumLength = 1, ErrorMessage = "About sections have a max length of 10000 characters")]
   public string About { get; set; } = string.Empty;
-
-  [Required]
-  [DefaultValue("User")]
-  public string AccountType { get; set; } = string.Empty;
-
-  [Required]
-  public DateTime CreationDateUTC { get; init; }
-
-  [Required]
-  public bool Disabled { get; set; } = false;
 }
