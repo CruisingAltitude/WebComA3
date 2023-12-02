@@ -1,4 +1,9 @@
+using AdminPortal.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AdminPortalDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DbContext")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
