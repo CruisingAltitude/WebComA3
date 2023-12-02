@@ -3,6 +3,7 @@ using System;
 using AdminPortal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdminPortal.Migrations
 {
     [DbContext(typeof(AdminPortalDbContext))]
-    partial class AdminPortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231202131440_AddedLoginToContext")]
+    partial class AddedLoginToContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -73,7 +76,7 @@ namespace AdminPortal.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Logins");
+                    b.ToTable("Login");
                 });
 
             modelBuilder.Entity("AdminPortal.Models.Login", b =>

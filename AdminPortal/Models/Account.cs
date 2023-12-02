@@ -23,8 +23,7 @@ public class Account{
   public string About { get; set; }
 
   [Required]
-  [DefaultValue("User")]
-  public string AccountType { get; set; }
+  public string AccountType { get; set; } = "User";
 
   [Required]
   public DateTime CreationDateUTC { get; init; }
