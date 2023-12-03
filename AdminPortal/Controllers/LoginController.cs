@@ -8,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using AdminPortal.Models;
 using AdminPortal.ViewModels;
 using Microsoft.Identity.Client;
+using Microsoft.AspNetCore.Identity;
 
 namespace AdminPortal.Controllers
 {
     public class LoginController : Controller
     {
         private readonly AdminPortalDbContext _context;
+        private readonly PasswordHasher<Account> hasher = new PasswordHasher<Account>();
 
         public LoginController(AdminPortalDbContext context)
         {
@@ -73,15 +75,45 @@ namespace AdminPortal.Controllers
 
                 var newLogin = new Login{
                     AccountId = account.AccountId,
-                    PasswordHash = createLogin.Password
+                    PasswordHash = hasher.HashPassword(newAccount, createLogin.Password)
                 };
 
                 _context.Add(newLogin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            // ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountType", newLogin.AccountId);
             return View();
         }
+
+        public IActionResult Login(){ return View(); }
+
+        [HttpPost]
+        public IActionResult Login(LoginVM loginVM){
+            // check if loginID exists
+            var account = _context.Accounts.FirstOrDefault(x => loginVM.Email == x.Email);
+            if (account == null){
+                Console.WriteLine("Account Not Found");
+                return View();
+            }
+
+            var login = _context.Logins.FirstOrDefault(x => x.AccountId == account.AccountId);
+            // match passwordhash and return error if no match
+            var passwordMatch = hasher.VerifyHashedPassword(account, login.PasswordHash, loginVM.Password);
+            if (login == null || string.IsNullOrEmpty(loginVM.Password) || passwordMatch != PasswordVerificationResult.Success)
+            {
+              ModelState.AddModelError("LoginFailed", "Login failed, please try again.");
+              Console.WriteLine("Login failed!");
+            //   return View(new LoginVM { Email = account.Email });
+              return View();
+            }
+            Console.WriteLine("Login success!");
+            return RedirectToAction("Index");
+        }
+
+        private bool LoginExists(int id)
+        {
+          return (_context.Logins?.Any(e => e.LoginId == id)).GetValueOrDefault();
+        }
+
     }
 }
