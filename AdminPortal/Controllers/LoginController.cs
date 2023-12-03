@@ -42,6 +42,10 @@ namespace AdminPortal.Controllers
               return View(loginVM);
             }
 
+            HttpContext.Session.SetString(nameof(Account.Email), account.Email);
+            HttpContext.Session.SetInt32(nameof(Account.AccountId), account.AccountId);
+            ViewBag.Test = "test";
+
             return RedirectToAction("Index");
         }
 
