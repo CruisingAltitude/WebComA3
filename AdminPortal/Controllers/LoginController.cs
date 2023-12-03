@@ -45,19 +45,20 @@ namespace AdminPortal.Controllers
             {
                 var emailInUse = _context.Accounts.FirstOrDefault(x => x.Email == createLogin.Email);
                 if(emailInUse != null){
-                    Console.WriteLine("Email is in use");
-                    return NotFound();
+                    ModelState.AddModelError("EmailInUse", "Email is already in use, please try a different email address.");
                 }
 
                 var usernameInUse = _context.Accounts.FirstOrDefault(x => x.Username == createLogin.Username);
                 if(usernameInUse != null){
-                    Console.WriteLine("Name is in use");
-                    return NotFound();
+                    ModelState.AddModelError("UsernameInUse", "Username is already in use, please try a different username.");
                 }
 
                 if(createLogin.Password != createLogin.PasswordConfirm){
-                    Console.WriteLine("Password no match");
-                    return NotFound();
+                    ModelState.AddModelError("PasswordNoMatch", "Passwords do not match.");
+                }
+
+                if(ModelState.ErrorCount > 0){
+                    return View(createLogin);
                 }
 
                 Console.WriteLine("Email not in use");
@@ -102,9 +103,7 @@ namespace AdminPortal.Controllers
             if (login == null || string.IsNullOrEmpty(loginVM.Password) || passwordMatch != PasswordVerificationResult.Success)
             {
               ModelState.AddModelError("LoginFailed", "Login failed, please try again.");
-              Console.WriteLine("Login failed!");
-            //   return View(new LoginVM { Email = account.Email });
-              return View();
+              return View(new LoginVM { Email = account.Email });
             }
             Console.WriteLine("Login success!");
             return RedirectToAction("Index");
