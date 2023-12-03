@@ -22,8 +22,30 @@ namespace AdminPortal.Controllers
             _context = context;
         }
 
-        // GET: Login
-        public async Task<IActionResult> Index()
+        public IActionResult Index(){ return View(); }
+
+        [HttpPost]
+        public IActionResult Index(LoginVM loginVM){
+            // check if loginID exists
+            var account = _context.Accounts.FirstOrDefault(x => loginVM.Email == x.Email);
+            if (account == null){
+                ModelState.AddModelError("AccountNotFound", "Account not found, please try again.");
+                return View(loginVM);
+            }
+
+            var login = _context.Logins.FirstOrDefault(x => x.AccountId == account.AccountId);
+            var passwordMatch = hasher.VerifyHashedPassword(account, login.PasswordHash, loginVM.Password);
+
+            if (login == null || string.IsNullOrEmpty(loginVM.Password) || passwordMatch != PasswordVerificationResult.Success)
+            {
+              ModelState.AddModelError("LoginFailed", "Login failed, please try again.");
+              return View(loginVM);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Accounts()
         {
             var adminPortalDbContext = _context.Logins.Include(l => l.Account);
             return View(await adminPortalDbContext.ToListAsync());
@@ -85,34 +107,5 @@ namespace AdminPortal.Controllers
             }
             return View();
         }
-
-        public IActionResult Login(){ return View(); }
-
-        [HttpPost]
-        public IActionResult Login(LoginVM loginVM){
-            // check if loginID exists
-            var account = _context.Accounts.FirstOrDefault(x => loginVM.Email == x.Email);
-            if (account == null){
-                Console.WriteLine("Account Not Found");
-                return View();
-            }
-
-            var login = _context.Logins.FirstOrDefault(x => x.AccountId == account.AccountId);
-            // match passwordhash and return error if no match
-            var passwordMatch = hasher.VerifyHashedPassword(account, login.PasswordHash, loginVM.Password);
-            if (login == null || string.IsNullOrEmpty(loginVM.Password) || passwordMatch != PasswordVerificationResult.Success)
-            {
-              ModelState.AddModelError("LoginFailed", "Login failed, please try again.");
-              return View(new LoginVM { Email = account.Email });
-            }
-            Console.WriteLine("Login success!");
-            return RedirectToAction("Index");
-        }
-
-        private bool LoginExists(int id)
-        {
-          return (_context.Logins?.Any(e => e.LoginId == id)).GetValueOrDefault();
-        }
-
     }
 }

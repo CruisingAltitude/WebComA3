@@ -1,41 +1,37 @@
-@model IEnumerable<AdminPortal.Models.Login>
-
+@model AdminPortal.ViewModels.LoginVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Login";
 }
 
-<h1>Index</h1>
+<div class="row">
+  <div class="col-md-6">
+    <h1 class="display-4">Login</h1>
+  <form asp-action="Index">
+    <div class="form-group">
+      <label asp-for="Email" class="control-label"></label>
+      <input asp-for="Email" class="form-control" />
+      <span asp-validation-for="Email" class="text-danger"></span>
+      @Html.ValidationMessage("AccountNotFound", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+      <label asp-for="Password" class="control-label"></label>
+      <input asp-for="Password" class="form-control" />
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+      <input type="submit" value="Login" class="btn btn-primary" /> | 
+      <a asp-controller="Login" asp-action="Create" class="btn btn-warning">Create Account</a>
+    </div>
+    @Html.ValidationMessage("LoginFailed", new { @class = "text-danger" })
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h2>Admin Portal</h2>
+    <p>This is the Admin Portal for my blog. Here we can add, edit, and delete blog articles.</p>
+  </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Account)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PasswordHash)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Account.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LoginId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LoginId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LoginId">Delete</a>
-            </td>
-        </tr>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
-    </tbody>
-</table>
