@@ -3,31 +3,31 @@
     ViewData["Title"] = "Login";
 }
 
-
 <div class="row">
-    <div class="col-md-4">
-        <h1 class="display-4">Login</h1>
-        <form asp-action="Login">
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" /> | 
-                <a asp-controller="Login" asp-action="Create" class="btn btn-warning">Create Account</a>
-            </div>
-            @Html.ValidationMessage("LoginFailed", new { @class = "text-danger" })
-        </form>
+  <div class="col-md-6">
+    <h1 class="display-4">Login</h1>
+  <form asp-action="Login">
+    <div class="form-group">
+      <label asp-for="Email" class="control-label"></label>
+      <input asp-for="Email" class="form-control" />
+      <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-    <div class="col-md-6">
-        <h2>Admin Portal</h2>
+    <div class="form-group">
+      <label asp-for="Password" class="control-label"></label>
+      <input asp-for="Password" class="form-control" />
+      <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    <div class="form-group">
+      <input type="submit" value="Login" class="btn btn-primary" /> | 
+      <a asp-controller="Login" asp-action="Create" class="btn btn-warning">Create Account</a>
+    </div>
+    @Html.ValidationMessage("LoginFailed", new { @class = "text-danger" })
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h2>Admin Portal</h2>
+    <p>This is the Admin Portal for my blog. Here we can add, edit, and delete blog articles.</p>
+  </div>
 </div>
 
 @section Scripts {
