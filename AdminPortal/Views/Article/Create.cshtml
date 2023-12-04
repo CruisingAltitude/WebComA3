@@ -18,6 +18,11 @@
                 <span asp-validation-for="ArticleTitle" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ArticleSummary" class="control-label"></label>
+                <textarea asp-for="ArticleSummary" class="form-control" rows="10" style="resize:none;"></textarea>
+                <span asp-validation-for="ArticleSummary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ArticleBody" class="control-label"></label>
                 <textarea asp-for="ArticleBody" class="form-control" rows="10" style="resize:none;"></textarea>
                 <span asp-validation-for="ArticleBody" class="text-danger"></span>

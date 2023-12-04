@@ -16,6 +16,8 @@ public class Article{
   [Required]
   public string ArticleTitle { get; set; }
 
+  public string ArticleSummary { get; set; }
+
   public string ArticleBody { get; set; }
 
   [Required]

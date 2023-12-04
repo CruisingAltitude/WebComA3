@@ -48,6 +48,7 @@ public class ArticleController : Controller
             Article article = new Article{
                 AuthorId = authorId,
                 ArticleTitle = articleVM.ArticleTitle,
+                ArticleSummary = articleVM.ArticleSummary,
                 ArticleBody = articleVM.ArticleBody,
                 CreationTimeUTC = DateTime.Now,
                 PublishTimeUTC = null,

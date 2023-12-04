@@ -9,6 +9,9 @@ public class ArticleVM
   public string ArticleTitle { get; set; }
 
   [Required]
+  public string ArticleSummary { get; set; }
+
+  [Required]
   public string ArticleBody { get; set; }
 
   public string Status { get; set; }
