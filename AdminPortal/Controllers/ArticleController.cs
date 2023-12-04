@@ -66,4 +66,20 @@ public class ArticleController : Controller
         }
         return View(articleVM);
     }    
+
+    public async Task<IActionResult> Details(int? id)
+    {
+        if (id == null || _context.Articles == null)
+        {
+            return NotFound();
+        }
+
+        var article = await _context.Articles.Include(x => x.Author).FirstOrDefaultAsync(m => m.ArticleId == id);
+        if (article == null)
+        {
+            return NotFound();
+        }
+
+        return View(article);
+    }
 }
