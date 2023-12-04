@@ -35,7 +35,13 @@ public class ArticleController : Controller
     public async Task<IActionResult> Create(ArticleVM articleVM)
     {
         string authorEmail = HttpContext.Session.GetString(nameof(Account.Email));
-        Console.WriteLine("\n\n!!!EMAIL IS " + authorEmail);
+
+        if(authorEmail == null)
+        { 
+            ModelState.AddModelError("EmailNull", "You are not logged in.");
+            return View(articleVM);
+        }
+
         Account author = _context.Accounts.FirstOrDefault(x => x.Email == authorEmail);
         Console.WriteLine("\n\n!!!AUTHOR IS " + author);
         int authorId = author.AccountId;
