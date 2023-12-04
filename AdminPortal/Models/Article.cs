@@ -10,7 +10,7 @@ public class Article{
   public int ArticleId { get; init; }
 
   [ForeignKey("Account")]
-  public int AuthourId { get; init; }
+  public int AuthorId { get; init; }
   public virtual Account Author { get; init; }
 
   [Required]
@@ -23,7 +23,7 @@ public class Article{
   public DateTime CreationTimeUTC { get; init; }
 
   [DataType(DataType.Date)]
-  public DateTime PublishTimeUTC { get; init; }
+  public DateTime? PublishTimeUTC { get; init; }
 
   public string Status { get; set; }
 

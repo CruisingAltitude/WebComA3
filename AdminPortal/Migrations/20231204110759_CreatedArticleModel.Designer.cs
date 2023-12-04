@@ -3,6 +3,7 @@ using System;
 using AdminPortal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdminPortal.Migrations
 {
     [DbContext(typeof(AdminPortalDbContext))]
-    partial class AdminPortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231204110759_CreatedArticleModel")]
+    partial class CreatedArticleModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -68,7 +71,10 @@ namespace AdminPortal.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("AuthorId")
+                    b.Property<int?>("AuthorAccountId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AuthourId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreationTimeUTC")
@@ -77,7 +83,7 @@ namespace AdminPortal.Migrations
                     b.Property<bool>("Hidden")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("PublishTimeUTC")
+                    b.Property<DateTime>("PublishTimeUTC")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
@@ -85,7 +91,7 @@ namespace AdminPortal.Migrations
 
                     b.HasKey("ArticleId");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("AuthorAccountId");
 
                     b.ToTable("Articles");
                 });
@@ -115,9 +121,7 @@ namespace AdminPortal.Migrations
                 {
                     b.HasOne("AdminPortal.Models.Account", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorAccountId");
 
                     b.Navigation("Author");
                 });

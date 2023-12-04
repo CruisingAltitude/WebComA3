@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdminPortal.Models;
+using AdminPortal.ViewModels;
 
 namespace AdminPortal.Controllers;
 
@@ -22,4 +23,41 @@ public class ArticleController : Controller
     {
         return View(await _context.Articles.ToListAsync());
     }
+
+    public IActionResult Create()
+    {
+        ViewData["PublisherId"] = new SelectList(_context.Accounts, "AccountId", "AccountType");
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(ArticleVM articleVM)
+    {
+        string authorEmail = HttpContext.Session.GetString(nameof(Account.Email));
+        Console.WriteLine("\n\n!!!EMAIL IS " + authorEmail);
+        Account author = _context.Accounts.FirstOrDefault(x => x.Email == authorEmail);
+        Console.WriteLine("\n\n!!!AUTHOR IS " + author);
+        int authorId = author.AccountId;
+
+        bool hidden = false;
+        if(articleVM.Hidden == true){ hidden = true; }
+        
+        if (ModelState.IsValid)
+        {
+            Article article = new Article{
+                AuthorId = authorId,
+                ArticleTitle = articleVM.ArticleTitle,
+                ArticleBody = articleVM.ArticleBody,
+                CreationTimeUTC = DateTime.Now,
+                PublishTimeUTC = null,
+                Status = "Draft",
+                Hidden = hidden
+            };
+            _context.Add(article);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(articleVM);
+    }    
 }
