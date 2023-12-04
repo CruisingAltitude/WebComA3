@@ -43,7 +43,6 @@ public class ArticleController : Controller
         }
 
         Account author = _context.Accounts.FirstOrDefault(x => x.Email == authorEmail);
-        Console.WriteLine("\n\n!!!AUTHOR IS " + author);
         int authorId = author.AccountId;
 
         bool hidden = false;
