@@ -11,7 +11,7 @@ public class Article{
 
   [ForeignKey("Account")]
   public int AuthourId { get; init; }
-  public virtual Account Authour { get; init; }
+  public virtual Account Author { get; init; }
 
   [Required]
   public string ArticleTitle { get; set; }

@@ -7,4 +7,5 @@ public class AdminPortalDbContext(DbContextOptions<AdminPortalDbContext> options
 {
     public DbSet<Account> Accounts { get; set; }
     public DbSet<Login> Logins { get; set; }
+    public DbSet<Article> Articles { get; set; }
 }

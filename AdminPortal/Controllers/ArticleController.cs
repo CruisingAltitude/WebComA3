@@ -1,21 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdminPortal.Models;
-using AdminPortal.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AdminPortal.Controllers;
 
-public class ArticleController{
-  private readonly DbContext _context;
-  
-  public ArticleController(DbContext context){
-    _context = context;
-  }
+public class ArticleController : Controller
+{
+    private readonly AdminPortalDbContext _context;
 
-  public async Task<IActionResult> Index()
-  {
-      var portfolioDbContext = await _context.Articles.Include(a => a.Account);
-      return View(portfolioDbContext.ToListAsync());
-  }
+    public ArticleController(AdminPortalDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        return View(await _context.Articles.ToListAsync());
+    }
 }
