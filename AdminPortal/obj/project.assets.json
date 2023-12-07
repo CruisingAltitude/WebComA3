@@ -9155,11 +9155,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jake/code/WebComA3/AdminPortal/AdminPortal.csproj",
+      "projectUniqueName": "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj",
       "projectName": "AdminPortal",
-      "projectPath": "/home/jake/code/WebComA3/AdminPortal/AdminPortal.csproj",
+      "projectPath": "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj",
       "packagesPath": "/home/jake/.nuget/packages/",
-      "outputPath": "/home/jake/code/WebComA3/AdminPortal/obj/",
+      "outputPath": "/home/jake/WebComA3/AdminPortal/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/jake/.nuget/NuGet/NuGet.Config"

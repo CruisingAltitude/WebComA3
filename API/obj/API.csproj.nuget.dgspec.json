@@ -1,17 +1,87 @@
 {
   "format": 1,
   "restore": {
-    "/home/jake/code/WebComA3/API/API.csproj": {}
+    "/home/jake/WebComA3/API/API.csproj": {}
   },
   "projects": {
-    "/home/jake/code/WebComA3/API/API.csproj": {
+    "/home/jake/WebComA3/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jake/code/WebComA3/API/API.csproj",
+        "projectUniqueName": "/home/jake/WebComA3/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/home/jake/code/WebComA3/API/API.csproj",
+        "projectPath": "/home/jake/WebComA3/API/API.csproj",
         "packagesPath": "/home/jake/.nuget/packages/",
-        "outputPath": "/home/jake/code/WebComA3/API/obj/",
+        "outputPath": "/home/jake/WebComA3/API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/jake/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj": {
+                "projectPath": "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj",
+        "projectName": "AdminPortal",
+        "projectPath": "/home/jake/WebComA3/AdminPortal/AdminPortal.csproj",
+        "packagesPath": "/home/jake/.nuget/packages/",
+        "outputPath": "/home/jake/WebComA3/AdminPortal/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/jake/.nuget/NuGet/NuGet.Config"
@@ -38,13 +108,37 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Swashbuckle.AspNetCore": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "microsoft.aspnetcore.identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "microsoft.aspnetcore.identity.UI": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
