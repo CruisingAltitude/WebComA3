@@ -32,6 +32,6 @@ public class ArticleController : ControllerBase
     {
         return NotFound();
     }
-    return await _context.Articles.Where(x => x.ArticleId == id).ToListAsync();
+    return await _context.Articles.Where(x => x.ArticleId == id).Include(x => x.Author).ToListAsync();
   }
 }
