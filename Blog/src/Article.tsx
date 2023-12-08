@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router';
 import '../styles/Blog.css'
 
-function Article(props){
+function Article(){
   const params = useParams();
   const url = "http://localhost:5177/api/article/" + params.id;
   const [data, setData] = useState([]);
