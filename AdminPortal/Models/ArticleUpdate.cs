@@ -25,6 +25,5 @@ public class ArticleUpdate{
   [Required]
   public string PreviousField { get; init; } = string.Empty;
 
-  [Required]
-  public string PreviousValue { get; init; } = string.Empty;
+  public string? PreviousValue { get; init; } = string.Empty;
 }

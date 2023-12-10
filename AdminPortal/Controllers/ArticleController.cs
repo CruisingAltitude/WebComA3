@@ -96,12 +96,20 @@ public class ArticleController : Controller
             return NotFound();
         }
         ViewData["PublisherId"] = new SelectList(_context.Accounts, "AccountId", "AccountType", article.AuthorId);
-        return View(article);
+        ArticleVM articleVM = new ArticleVM{
+            ArticleId = article.ArticleId,
+            ArticleTitle = article.ArticleTitle,
+            ArticleSummary = article.ArticleSummary,
+            ArticleBody = article.ArticleBody,
+            Status = article.Status,
+            Hidden = article.Hidden
+        };
+        return View(articleVM);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, ArticleVM articleVM)
+    public async Task<IActionResult> Update(int id, ArticleVM articleVM)
     {
         if (id != articleVM.ArticleId)
         {
@@ -122,7 +130,7 @@ public class ArticleController : Controller
 
         if (ModelState.IsValid)
         {
-
+            Console.WriteLine("model is valid");
             // Get article by id
             Article article = _context.Articles.FirstOrDefault(x => x.ArticleId == articleVM.ArticleId);
             Account updater = _context.Accounts.FirstOrDefault(x => x.AccountId == updaterId);
@@ -141,7 +149,7 @@ public class ArticleController : Controller
             }
 
            // Update article summary
-            if(article.ArticleTitle != articleVM.ArticleTitle){
+            if(article.ArticleSummary != articleVM.ArticleSummary){
                 ArticleUpdate updateSummary = new ArticleUpdate{
                     ArticleId = (int)articleVM.ArticleId,
                     UpdaterId = updater.AccountId,
