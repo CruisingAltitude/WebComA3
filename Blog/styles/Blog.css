@@ -4,6 +4,9 @@
   width: 300px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  flex-grow: 1;
+  width: 400px;
+  max-width: 600px;
 }
 
 .card:hover {
@@ -15,5 +18,9 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: 0 0.5rem;
+  margin: 0 3rem;
+}
+
+.card-body {
+  padding: 0 1rem 1rem 1rem;
 }
