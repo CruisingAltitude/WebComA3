@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router';
 import '../styles/Blog.css'
+import Markdown from 'react-markdown'
 
 function Article(){
   const params = useParams();
@@ -23,19 +24,17 @@ function Article(){
   },[])
 
   return (
-    <>
+    <section>
       { data.map((item) =>
-        <div>
-          <p>{ item['articleTitle'] }</p>
-          <p>{ item['author']['username'] }</p>
-          <p>{ item['status'] }</p>
-          <p>{ item['creationTimeUTC'] }</p>
-          <p>{ item['publishTimeUTC'] }</p>
-          <p>{ item['articleSummary'] }</p>
-          <p>{ item['articleBody'] }</p>
-        </div>
+        <article>
+          <h1>{ item['articleTitle'] }</h1>
+          <details className='author'>
+            <summary>{ item['author']['username'] } { item['publishTimeUTC'] }</summary>
+          </details>
+          <Markdown className="article-body">{ item['articleBody'] }</Markdown>
+        </article>
       )}
-    </>
+    </section>
   )
 }
 

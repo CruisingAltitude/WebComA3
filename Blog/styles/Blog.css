@@ -24,3 +24,34 @@
 .card-body {
   padding: 0 1rem 1rem 1rem;
 }
+
+.article-body {
+  white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+section > article {
+  width: 720px;
+  border-left: 2px dotted blue;
+  border-right: 2px dotted blue;
+  padding: 0 10px;
+}
+
+details > summary {
+  list-style: none;
+  text-align: right;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+p img {
+  max-width: 100%;
+}

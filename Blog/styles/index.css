@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--bg-sec);
 }
 
 /* Colourscheme */
@@ -8,5 +9,38 @@ body {
   --fg-pri: #363636; /* jet, two shades off black */
   --fg-sec: #000000; /* black for highlighting */
   --bg-pri: #fbfbfb; /* white, subtley grey */
+  --bg-sec: #f5f5f5; /* white, subtley grey */
+  --hi-pri: #2c3a2b; /* Black olive */
+  --hi-sec: #5a6f5a; /* Reseda green */
   --shadow: var(--fg-pri);
+}
+
+/* Font styles */
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: var(--hi-pri);
+  margin-bottom: 0;
+}
+
+details {
+  color: var(--hi-sec);
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+  color: var(--hi-pri);
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.4rem;
+  color: var(--hi-pri);
+  margin: 0;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-top: 0;
 }
