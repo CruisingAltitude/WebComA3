@@ -38,8 +38,8 @@ section {
 
 section > article {
   width: 720px;
-  border-left: 2px dotted blue;
-  border-right: 2px dotted blue;
+  border-left: 1px solid var(--hi-sec);
+  border-right: 1px solid var(--hi-sec);
   padding: 0 10px;
 }
 

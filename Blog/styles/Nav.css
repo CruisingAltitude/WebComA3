@@ -1,6 +1,8 @@
 nav {
   background-color: var(--bg-pri);
   color: var(--fg-pri);
+  position: fixed;
+  width: 100%;
 }
 
 nav ul {
@@ -34,4 +36,8 @@ nav ul li a {
 nav ul li:hover {
   transition: 0.25s;
   color: var(--fg-sec);
+}
+
+.route {
+  padding-top: 3rem;
 }
