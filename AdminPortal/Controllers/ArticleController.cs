@@ -21,7 +21,7 @@ public class ArticleController : Controller
 
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Articles.ToListAsync());
+        return View(await _context.Articles.OrderByDescending(x => x.CreationTimeUTC).ToListAsync());
     }
 
     public IActionResult Create()
