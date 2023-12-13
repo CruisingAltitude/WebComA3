@@ -22,7 +22,7 @@ public class ArticleController : ControllerBase
     {
         return NotFound();
     }
-    return await _context.Articles.ToListAsync();
+    return await _context.Articles.OrderByDescending(x => x.CreationTimeUTC).ToListAsync();
   }
 
   [HttpGet("{id}")]
