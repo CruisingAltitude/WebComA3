@@ -5,6 +5,7 @@ import Blog from './Blog'
 import AboutMe from './AboutMe'
 import Contact from './Contact'
 import Article from './Article'
+import Footer from './Footer'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="article/:id" element={<Article />} />
         </Routes>
       </div>
+      <Footer />
     </>
   )
 }
